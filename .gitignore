@@ -1,3 +1,7 @@
+__pycache__/
+.serverless-wsgi
+.serverless
+.requirements
 .idea/
 env/
 .DS_Store
