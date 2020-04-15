@@ -1,0 +1,30 @@
+{
+  "name": "are-they-gay",
+  "version": "1.0.0",
+  "description": "A project to find out if a person of interest to you is gay.",
+  "main": "index.js",
+  "scripts": {
+    "setup": "npm install",
+    "postsetup": "node postsetup.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk": "^2.1.0",
+    "inquirer": "^3.2.3",
+    "js-yaml": "^3.9.1",
+    "serverless-python-requirements": "^2.5.0",
+    "serverless-wsgi": "^1.7.4"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rinaschiller/are-they-gay.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/rinaschiller/are-they-gay/issues"
+  },
+  "homepage": "https://github.com/rinaschiller/are-they-gay#readme"
+}
