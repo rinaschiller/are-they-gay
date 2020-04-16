@@ -1,3 +1,5 @@
+org: schillerrina
+app: my-first-app
 service: are-they-gay
 
 frameworkVersion: ">=1.1.0 <2.0.0"
@@ -44,69 +46,69 @@ provider:
 
 functions:
   create:
-    handler: todos/create.create
+    handler: persons/create.create
     events:
       - http:
-          path: todos
+          path: persons
           method: post
           cors: true
 
   list:
-    handler: todos/list.todo_list
+    handler: persons/list.person_list
     events:
       - http:
-          path: todos
+          path: persons
           method: get
           cors: true
 
   get:
-    handler: todos/get.get
+    handler: persons/get.get
     events:
       - http:
-          path: todos/{todo_id}
+          path: persons/{person_id}
           method: get
           cors: true
           integration: lambda
           request:
             paths:
-              todo_id: true
+              person_id: true
 
   update:
-    handler: todos/update.update
+    handler: persons/update.update
     events:
       - http:
-          path: todos/{todo_id}
+          path: persons/{person_id}
           method: put
           cors: true
           integration: lambda
           request:
             paths:
-              todo_id: true
+              person_id: true
   delete:
-    handler: todos/delete.delete
+    handler: persons/delete.delete
     events:
       - http:
-          path: todos/{todo_id}
+          path: persons/{person_id}
           method: delete
           cors: true
           integration: lambda
           request:
             paths:
-              todo_id: true
+              person_id: true
 
 resources:
   Resources:
-    TodosDynamoDbTable:
+    PersonsDynamoDbTable:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Retain
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: todo_id
+            AttributeName: person_id
             AttributeType: S
         KeySchema:
           -
-            AttributeName: todo_id
+            AttributeName: person_id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

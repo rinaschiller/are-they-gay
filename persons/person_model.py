@@ -1,11 +1,11 @@
 import os
 from datetime import datetime
 
-from pynamodb.attributes import UnicodeAttribute, BooleanAttribute, UTCDateTimeAttribute
+from pynamodb.attributes import UnicodeAttribute, UTCDateTimeAttribute
 from pynamodb.models import Model
 
 
-class TodoModel(Model):
+class PersonModel(Model):
     class Meta:
         table_name = os.environ['DYNAMODB_TABLE']
         if 'ENV' in os.environ:
@@ -14,15 +14,21 @@ class TodoModel(Model):
             region = 'us-east-1'
             host = 'https://dynamodb.us-east-1.amazonaws.com'
 
-    todo_id = UnicodeAttribute(hash_key=True, null=False)
-    text = UnicodeAttribute(null=False)
-    checked = BooleanAttribute(null=False)
+    person_id = UnicodeAttribute(hash_key=True, null=False)
+    first_name = UnicodeAttribute(null=False)
+    last_name = UnicodeAttribute(null=False)
+    gender = UnicodeAttribute(null=True)
+    is_gay = UnicodeAttribute(null=False, default='no')
+    sexuality = UnicodeAttribute(null=True)
+    pronouns = UnicodeAttribute(null=True)
+    image_url = UnicodeAttribute(null=True)
+    twitter_handle = UnicodeAttribute(null=True)
     createdAt = UTCDateTimeAttribute(null=False, default=datetime.now())
     updatedAt = UTCDateTimeAttribute(null=False)
 
     def save(self, conditional_operator=None, **expected_values):
         self.updatedAt = datetime.now()
-        super(TodoModel, self).save()
+        super(PersonModel, self).save()
 
     def __iter__(self):
         for name, attr in self._get_attributes().items():
