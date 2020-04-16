@@ -4,6 +4,14 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 
 plugins:
   - serverless-python-requirements
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: aretheygay.org
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
 
 package:
   exclude:
