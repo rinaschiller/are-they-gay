@@ -5,9 +5,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "serverless-python-requirements": "^2.4.1"
+    "serverless-python-requirements": "^2.5.0"
   },
   "devDependencies": {
-    "serverless-domain-manager": "^3.3.1"
+    "serverless-domain-manager": "^3.3.1",
+    "serverless-domainserver-manager": "^3.3.1",
+    "serverless-offline": "^6.1.4"
   }
 }

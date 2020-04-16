@@ -7,8 +7,9 @@ from persons.person_model import PersonModel
 
 def update(event, context):
     # TODO: Figure out why this is behaving differently to the other endpoints
-    # data = json.loads(event['body'])
-    data = event['body']
+    print("Event is---")
+    print(event)
+    data = json.loads(event.get('body'))
 
     if 'person_id' not in data and 'last_name' not in data:
         logging.error('Validation Failed %s', data)
@@ -23,10 +24,10 @@ def update(event, context):
 
     person_changed = False
     # TODO: Need to perform this check for all attributes so that they are updated
-    if 'last_name' in data and data['last_name'] != found_person.last_name:
+    if 'last_name' in data and data.get('last_name') != found_person.last_name:
         found_person.last_name = data['last_name']
         person_changed = True
-    if 'first_name' in data and data['first_name'] != found_person.checked:
+    if 'first_name' in data and data.get('first_name') != found_person.checked:
         found_person.first_name = data['first_name']
         person_changed = True
 
