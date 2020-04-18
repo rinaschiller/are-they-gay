@@ -11,10 +11,10 @@ def update(event, context):
     print(event)
     data = json.loads(event.get('body'))
 
-    if 'person_id' not in data and 'last_name' not in data:
-        logging.error('Validation Failed %s', data)
-        return {'statusCode': 422,
-                'body': json.dumps({'error_message': 'Couldn\'t update the person item.'})}
+    # if 'person_id' not in data and 'last_name' not in data:
+    #     logging.error('Validation Failed %s', data)
+    #     return {'statusCode': 422,
+    #             'body': json.dumps({'error_message': 'Couldn\'t update the person item.'})}
 
     try:
         found_person = PersonModel.get(hash_key=event['path']['person_id'])
@@ -27,8 +27,11 @@ def update(event, context):
     if 'last_name' in data and data.get('last_name') != found_person.last_name:
         found_person.last_name = data['last_name']
         person_changed = True
-    if 'first_name' in data and data.get('first_name') != found_person.checked:
+    if 'first_name' in data and data.get('first_name') != found_person.first_name:
         found_person.first_name = data['first_name']
+        person_changed = True
+    if 'is_gay' in data and data.get('is_gay') != found_person.is_gay:
+        found_person.is_gay = data['is_gay']
         person_changed = True
 
     if person_changed:
@@ -38,5 +41,9 @@ def update(event, context):
 
     # create a response
     return {'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
+            },
             'body': json.dumps(dict(found_person))}
 

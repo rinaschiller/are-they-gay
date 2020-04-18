@@ -12,4 +12,8 @@ def get(event, context):
 
     # create a response
     return {'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
+            },
             'body': json.dumps(dict(found_person))}

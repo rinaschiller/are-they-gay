@@ -19,6 +19,7 @@ class PersonModel(Model):
     last_name = UnicodeAttribute(null=False)
     is_gay = UnicodeAttribute(null=False, default='no')
     gender = UnicodeAttribute(null=True)
+    zodiac_sign = UnicodeAttribute(null=True)
     sexuality = UnicodeAttribute(null=True)
     pronouns = UnicodeAttribute(null=True)
     image_url = UnicodeAttribute(null=True)
