@@ -22,11 +22,11 @@ package:
     - node_modules/**
     - .idea/**
     - .requirements/**
+    - .serverless/**
+    - .aws-sam/
     - env/**
+    - frontend/
     - README.md
-    - package.json
-    - package-lock.json
-    - requirements.txt
 
 provider:
   name: aws
